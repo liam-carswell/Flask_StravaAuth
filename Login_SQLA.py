@@ -7,9 +7,10 @@ from flask_dance.consumer.storage.sqla import OAuthConsumerMixin, SQLAlchemyStor
 
 app = Flask(__name__)
 
-app.secret_key = 'secretkeyhere'
-app.config["STRAVA_OAUTH_CLIENT_ID"] = '51104'
-app.config["STRAVA_OAUTH_CLIENT_SECRET"] = 'f8fed72df413634c9114b38bf328b20a19d42fd0'
+app.secret_key = os.environ.get('SECRET_KEY')
+app.config["STRAVA_OAUTH_CLIENT_ID"] = os.environ.get('STRAVA_OAUTH_CLIENT_ID')
+app.config["STRAVA_OAUTH_CLIENT_SECRET"] = os.environ.get(
+    'STRAVA_OAUTH_CLIENT_SECRET')
 app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get(
     'SQLALCHEMY_DATABASE_URI')
 
